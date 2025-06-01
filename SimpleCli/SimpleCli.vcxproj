@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fileConfigs.hpp" />
+    <ClCompile Include="fileSize.cpp" />
     <ClCompile Include="search.cpp" />
     <ClCompile Include="SimpleCli.cpp" />
   </ItemGroup>
