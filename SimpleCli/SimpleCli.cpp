@@ -8,10 +8,20 @@
 using namespace std;
 namespace fs = std::filesystem;
 
+void clearScreen() {
+#if defined(__linux__) || defined(__APPLE__)
+    system("clear");
+#elif defined(_WIN32)
+    system("cls");
+#else
+    cout << "Comando de limpeza não suportado neste sistema.\n";
+#endif
+}
+
 int main()
 {
     bool saida = false;
-    string input = "";
+    std::unique_ptr<string> input = std::make_unique<string>();
 
     cout << "=----//----=";
     cout << "\n";
@@ -22,24 +32,18 @@ int main()
 
     while (!saida) {
         std::cout << fs::current_path() << "> ";
-        getline(cin, input);
+        getline(cin, *input);
 
-        if (input == "scape") {
+        if (*input == "scape") {
             saida = true;
         }
 
-        else if (input == "clean") {
-            #if defined(__linux__) || defined(__APPLE__)
-                system("clear");
-            #elif defined(_WIN32)
-                system("cls");
-            #else
-                std::cout << "Comando de limpeza não suportado neste sistema.\n";
-            #endif
+        else if (*input == "clean") {
+            clearScreen();
         }
 
-        else if (input.rfind("ent ", 0) == 0) {
-            string path = input.substr(4);
+        else if (input->rfind("ent ", 0) == 0) {
+            string path = input->substr(4);
             error_code ec;
             fs::current_path(path, ec);
             bool saidaInterna = false;
@@ -60,13 +64,25 @@ int main()
                     else if (inputInterno == "where") {
                         cout << fs::current_path() << "\n";
                     }
-                    else if ("veri") {
+                    else if (inputInterno == "veri") {
                         fs::path caminhoAtual = fs::current_path();
                         float retornoTamanho = sizeFile(caminhoAtual);
-                        cout << "Size: " << retornoTamanho;
+                        cout << "Size: " << retornoTamanho << endl;
                     }
                 }
             }
+        }
+
+        else if (*input == "gordo") {
+            system("start C:\\Users\\oisyz\\Downloads\\arhur.png");
+        }
+
+        else if (*input == "topera") {
+            system("start C:\\Users\\oisyz\\Downloads\\topera.jpg");
+        }
+
+        else if (*input == "joao") {
+            system("start C:\\Users\\oisyz\\Downloads\\joao.jpg");
         }
 
         else {
