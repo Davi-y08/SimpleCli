@@ -30,6 +30,9 @@
     <ClCompile Include="fileSize.cpp">
       <Filter>Arquivos de Origem\filesConfigs</Filter>
     </ClCompile>
+    <ClCompile Include="delFile.cpp">
+      <Filter>Arquivos de Origem\filesConfigs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="search.hpp">

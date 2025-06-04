@@ -69,20 +69,11 @@ int main()
                         float retornoTamanho = sizeFile(caminhoAtual);
                         cout << "Size: " << retornoTamanho << endl;
                     }
+                    else if (inputInterno == "del") {
+
+                    }
                 }
             }
-        }
-
-        else if (*input == "gordo") {
-            system("start C:\\Users\\oisyz\\Downloads\\arhur.png");
-        }
-
-        else if (*input == "topera") {
-            system("start C:\\Users\\oisyz\\Downloads\\topera.jpg");
-        }
-
-        else if (*input == "joao") {
-            system("start C:\\Users\\oisyz\\Downloads\\joao.jpg");
         }
 
         else {
