@@ -55,6 +55,7 @@ int main()
             else {
                 while (!saidaInterna) {
                     string inputInterno = "";
+                    fs::path caminhoAtual = fs::current_path();
                     cout << fs::current_path() << " (sub)> ";
                     getline(cin, inputInterno);
                     if (inputInterno == "back") {
@@ -65,12 +66,15 @@ int main()
                         cout << fs::current_path() << "\n";
                     }
                     else if (inputInterno == "veri") {
-                        fs::path caminhoAtual = fs::current_path();
+                        
                         float retornoTamanho = sizeFile(caminhoAtual);
                         cout << "Size: " << retornoTamanho << endl;
                     }
                     else if (inputInterno == "del") {
-
+                        delFile(caminhoAtual);
+                    }
+                    else if (inputInterno.rfind("delFile ", 0) == 0) {
+                          
                     }
                 }
             }

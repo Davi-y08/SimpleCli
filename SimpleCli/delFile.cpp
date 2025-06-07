@@ -5,9 +5,9 @@
 
 namespace fs = std::filesystem;
 using namespace std;
-ifstream inf_file;
+ifstream file;
 
-void delFile(fs::path& path) {
+void delFile(const fs::path& path) {
     std::error_code ec;
     if (fs::remove(path, ec)) {
         std::cout << "aquivo deletado com sucesso." << std::endl;
