@@ -16,6 +16,12 @@
     <Filter Include="Arquivos de Origem\filesConfigs">
       <UniqueIdentifier>{2eaaf471-8e19-4c85-9c87-1c59f7997f50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Origem\Crypto">
+      <UniqueIdentifier>{951ee29e-8b13-40bc-a15d-cf5047154a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\inputs">
+      <UniqueIdentifier>{89a9dedd-efa8-4221-8798-2ecf810e5e23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SimpleCli.cpp">
@@ -33,9 +39,15 @@
     <ClCompile Include="delFile.cpp">
       <Filter>Arquivos de Origem\filesConfigs</Filter>
     </ClCompile>
+    <ClCompile Include="Crypto.cpp">
+      <Filter>Arquivos de Origem\Crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="search.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

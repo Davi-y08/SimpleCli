@@ -1,12 +1,16 @@
 #include <iostream>
 #include "search.hpp"
 #include "fileConfigs.hpp"
+#include "Crypto.hpp"
 #include <sstream>
 #include <string>
 #include <filesystem>
+#include "json.hpp"
+#include <fstream>
 
 using namespace std;
 namespace fs = std::filesystem;
+using json = nlohmann::json;
 
 void clearScreen() {
 #if defined(__linux__) || defined(__APPLE__)
@@ -16,6 +20,52 @@ void clearScreen() {
 #else
     cout << "Comando de limpeza não suportado neste sistema.\n";
 #endif
+}
+
+struct NovoLogin
+{
+    string site;
+    string usuario;
+    string senhaCriptografada;
+};
+
+struct Credenciais {
+    string site;
+    string usuario;
+    string senha;
+};
+
+Credenciais infoInput() {
+    Credenciais c;
+    cout << "Digite o site: ";
+    getline(cin, c.site);
+
+    cout << "Digite o usuario: ";
+    getline(cin, c.usuario);
+
+    cout << "Digite a senha: ";
+    getline(cin, c.senha);
+
+    return c;
+}
+
+void jsonSave(const NovoLogin& novo, const std::string& caminho) {
+    json j;
+    std::ifstream inFile(caminho);
+    if (inFile.is_open()) {
+        inFile >> j;
+        inFile.close();
+    }
+
+    j.push_back({
+        {"site", novo.site},
+        {"user", novo.usuario},
+        {"senhacriptografada", novo.senhaCriptografada}
+        });
+
+    std::ofstream outfile(caminho);
+    outfile << j.dump(4);
+    outfile.close();
 }
 
 int main()
@@ -66,7 +116,6 @@ int main()
                         cout << fs::current_path() << "\n";
                     }
                     else if (inputInterno == "veri") {
-                        
                         float retornoTamanho = sizeFile(caminhoAtual);
                         cout << "Size: " << retornoTamanho << endl;
                     }
@@ -74,10 +123,27 @@ int main()
                         delFile(caminhoAtual);
                     }
                     else if (inputInterno.rfind("delFile ", 0) == 0) {
-                          
+                        string pathFileForDel = inputInterno.substr(8);
+                        fs::path caminhoEnviado = pathFileForDel;
+                        delFile(caminhoEnviado);
                     }
                 }
             }
+        }
+
+        else if (*input == "addPass") {
+            Credenciais entrada = infoInput();
+            NovoLogin novo;
+
+            string chave;
+            cout << "Digite a chave para a criptografia: ";
+            getline(cin, chave);
+
+            novo.site = entrada.site;
+            novo.usuario = entrada.usuario;
+            novo.senhaCriptografada = xorEncryptDecrypt(entrada.senha, chave);
+
+            jsonSave(novo, "senhas.json");
         }
 
         else {
