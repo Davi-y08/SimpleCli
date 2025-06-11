@@ -11,6 +11,5 @@ std::string xorEncryptDecrypt(const std::string& input, const std::string& key) 
 	for (size_t i = 0; i < input.size(); ++i) {
 		output[i] = input[i] ^ key[i % key.size()];
 	}
-
 	return output;
 }

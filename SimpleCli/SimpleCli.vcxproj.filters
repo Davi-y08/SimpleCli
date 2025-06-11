@@ -42,12 +42,18 @@
     <ClCompile Include="Crypto.cpp">
       <Filter>Arquivos de Origem\Crypto</Filter>
     </ClCompile>
+    <ClCompile Include="Ethernet.cpp">
+      <Filter>Arquivos de Origem\inputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="search.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Crypto.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Ethernet.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,10 +7,13 @@
 #include <filesystem>
 #include "json.hpp"
 #include <fstream>
+#include "Ethernet.hpp";
 
 using namespace std;
 namespace fs = std::filesystem;
 using json = nlohmann::json;
+
+
 
 void clearScreen() {
 #if defined(__linux__) || defined(__APPLE__)
@@ -129,6 +132,11 @@ int main()
                     }
                 }
             }
+        }
+
+        else if (input->rfind("ping ", 0) == 0) {
+            string site = input->substr(5);
+            pingSite(site);
         }
 
         else if (*input == "addPass") {

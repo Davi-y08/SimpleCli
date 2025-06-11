@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Crypto.cpp" />
     <ClCompile Include="delFile.cpp" />
+    <ClCompile Include="Ethernet.cpp" />
     <ClCompile Include="fileConfigs.hpp" />
     <ClCompile Include="fileSize.cpp" />
     <ClCompile Include="search.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crypto.hpp" />
+    <ClInclude Include="Ethernet.hpp" />
     <ClInclude Include="search.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
