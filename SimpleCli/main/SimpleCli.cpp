@@ -8,12 +8,9 @@
 #include "json.hpp"
 #include <fstream>
 #include "Ethernet.hpp";
-
 using namespace std;
 namespace fs = std::filesystem;
 using json = nlohmann::json;
-
-
 
 void clearScreen() {
 #if defined(__linux__) || defined(__APPLE__)
