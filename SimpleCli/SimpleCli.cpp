@@ -7,7 +7,12 @@
 #include <filesystem>
 #include "json.hpp"
 #include <fstream>
-#include "Ethernet.hpp";
+#include "Ethernet.hpp"
+#include <string.h>
+#include <stdlib.h>
+#include <chrono>
+#include <thread>
+
 using namespace std;
 namespace fs = std::filesystem;
 using json = nlohmann::json;
@@ -148,7 +153,38 @@ int main()
             novo.usuario = entrada.usuario;
             novo.senhaCriptografada = xorEncryptDecrypt(entrada.senha, chave);
 
-            jsonSave(novo, "senhas.json");
+            jsonSave(novo, "senhas.j    son");
+        }
+
+        else if (input->rfind("pomodoro ", 0) == 0) {
+            string inputMin = input->substr(9);
+            int minutos = stoi(inputMin);
+            int segundos = 59;
+            int segundosTotais = minutos * 60;
+
+            minutos -= 1;
+            while (segundosTotais >= 0) {
+                if (segundos < 0) {
+                    segundos = 59;
+                    minutos--;
+                }
+
+                
+                if (minutos < 0) {
+                    minutos = 0;
+                    segundos = 0;
+                }
+
+                system("cls");
+                cout << "Cronômetro: "
+                    << (minutos < 10 ? "0" : "") << minutos << ":"
+                    << (segundos < 10 ? "0" : "") << segundos << endl;
+
+                this_thread::sleep_for(chrono::seconds(1));
+
+                segundos--;
+                segundosTotais--;
+            }
         }
 
         else {
